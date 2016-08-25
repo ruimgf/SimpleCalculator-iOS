@@ -41,6 +41,7 @@ class ViewController: UIViewController {
     var number_2:Float = 0
     var operation = 0
     
+    var pointclicked:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -69,7 +70,10 @@ class ViewController: UIViewController {
     
     //number operations
     @IBAction func point(sender: AnyObject) {
-        self.update_display_message(String("."))
+        if self.pointclicked == false{
+            self.update_display_message(String("."))
+            self.pointclicked = true
+        }
     }
     @IBAction func zero(sender: AnyObject) {
         self.update_display_message(String(0))
@@ -164,13 +168,16 @@ class ViewController: UIViewController {
             break
         }
         self.display_nr = self.display_message.characters.count
+        self.pointclicked = true
         self.update_display()
+        
     }
     
     @IBAction func clear(sender: AnyObject) {
         self.display_message = String(0)
         self.update_display()
         self.display_nr = 0
+        self.pointclicked = false
     }
     
     
